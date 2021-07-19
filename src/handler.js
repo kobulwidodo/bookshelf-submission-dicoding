@@ -67,14 +67,14 @@ const addNewBookHandler = (request, h) => {
 const getAllBookHandler = (request, h) => {
   const { name, reading, finished } = request.query;
 
+  let bookShow = book.map((n) => ({ id: n.id, name: n.name, publisher: n.publisher }));
+
   if (name !== undefined) {
-    const bookShow = book.filter((n) => n.name === name);
+    bookShow = bookShow.filter((n) => n.name === name);
     const response = h.response({
       status: 'success',
       data: {
-        books: {
-          bookShow,
-        },
+        books: bookShow,
       },
     });
     response.code(200);
@@ -82,13 +82,11 @@ const getAllBookHandler = (request, h) => {
   }
 
   if (reading !== undefined) {
-    const bookShow = book.filter((n) => n.reading === reading);
+    bookShow = bookShow.filter((n) => n.reading === reading);
     const response = h.response({
       status: 'success',
       data: {
-        books: {
-          bookShow,
-        },
+        books: bookShow,
       },
     });
     response.code(200);
@@ -96,13 +94,11 @@ const getAllBookHandler = (request, h) => {
   }
 
   if (finished !== undefined) {
-    const bookShow = book.filter((n) => n.finished === finished);
+    bookShow = bookShow.filter((n) => n.finished === finished);
     const response = h.response({
       status: 'success',
       data: {
-        books: {
-          bookShow,
-        },
+        books: bookShow,
       },
     });
     response.code(200);
@@ -112,9 +108,7 @@ const getAllBookHandler = (request, h) => {
   const response = h.response({
     status: 'success',
     data: {
-      books: {
-        book,
-      },
+      books: bookShow,
     },
   });
   response.code(200);

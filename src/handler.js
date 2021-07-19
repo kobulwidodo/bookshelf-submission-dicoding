@@ -64,4 +64,11 @@ const addNewBookHandler = (request, h) => {
   return response;
 };
 
-module.exports = { addNewBookHandler };
+const getAllBookHandler = () => ({
+  status: 'success',
+  data: {
+    books: book,
+  },
+});
+
+module.exports = { addNewBookHandler, getAllBookHandler };
